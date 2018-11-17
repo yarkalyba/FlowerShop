@@ -1,38 +1,28 @@
-import database.DataBase;
-import discounts.PromocodeDiscount;
 import flowers.*;
 import lombok.Data;
 import lombok.SneakyThrows;
-import payment.Privat24Payment;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
+import java.io.IOException;
 
 @Data
 public class Main {
     @SneakyThrows
-    public static void main(String[] args) {
-        Color myColor = Color.RED;
-        System.out.println(myColor);
-        System.out.println(myColor.getRgb());
-        Flower fl = new Flower(FlowerType.CHARMOMILE, Color.YELLOW, 12, spec);
+    public static void main(String[] args) throws IOException {
+        FlowerBucket bucketCharmomile = new FlowerBucket();
+        FlowerBucket bucketRose = new FlowerBucket();
+        FlowerBucket bucketTulip = new FlowerBucket();
+        for(int i=0; i<10; i++){
+            bucketCharmomile.addFlower(new Flower(FlowerType.CHARMOMILE, Color.YELLOW, 12, new FlowerSpec(), "Ukraine"));
+            bucketRose.addFlower(new Flower(FlowerType.ROSE, Color.RED, 20, new FlowerSpec(), "Moldova"));
+            bucketTulip.addFlower(new Flower(FlowerType.TULIP, Color.LIGHTBLUE, 15, new FlowerSpec(), "Poland"));
+        }
+        System.out.println("Charmomile bucket price: "+bucketCharmomile.getPrice());
+        System.out.println("Rose bucket price: "+bucketRose.getPrice());
+        System.out.println("Tulip bucket price: "+bucketTulip.getPrice());
 
-        FlowerBucket bucket = new FlowerBucket();
-//        bucket.addFlower(fl);
 
-
-        Privat24Payment p24 = new Privat24Payment();
-        Order order = new Order();
-//        order.addFlowerBucket();
-        order = new PromocodeDiscount(order);
-
-        DataBase db1 = DataBase.getInstance();
-        db1.add(order);
-        db1.commit();
-
-        BufferedWriter file = new BufferedWriter((new FileWriter("my.txt", true)));
-        file.write("rybka");
-        file.close();
 
         }
 }

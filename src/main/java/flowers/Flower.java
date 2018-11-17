@@ -6,11 +6,12 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public abstract class Flower {
+public class Flower {
     private FlowerType type;
     private Color color;
     private float price;
     private FlowerSpec spec;
+    private String country_of_origin;
 
     public double getSepalLenght() {
         return spec.getSepalLenght();
